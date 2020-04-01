@@ -10,15 +10,15 @@ script:
   - docker run -e CI=true multi-docker-client-test npm run test
 
 after_sucess:
-  - docker build -t "$DOCKER_ID"/multi-client ./client
-  - docker build -t "$DOCKER_ID"/multi-nginx ./nginx
-  - docker build -t "$DOCKER_ID"/multi-server ./server
-  - docker build -t "$DOCKER_ID"/multi-worker ./worker
+  - docker build -t mattroth/multi-client ./client
+  - docker build -t mattroth/multi-nginx ./nginx
+  - docker build -t mattroth/multi-server ./server
+  - docker build -t mattroth/multi-worker ./worker
 
 #Docker Login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- password-stdin
 
-  - docker push "$DOCKER_ID"/multi-client
-  - docker push "$DOCKER_ID"/multi-nginx
-  - docker push "$DOCKER_ID"/multi-server
-  - docker push "$DOCKER_ID"/multi-worker
+  - docker push mattroth/multi-client
+  - docker push mattroth/multi-nginx
+  - docker push mattroth/multi-server
+  - docker push mattroth/multi-worker
